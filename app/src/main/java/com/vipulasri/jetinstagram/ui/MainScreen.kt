@@ -32,6 +32,7 @@ import com.vipulasri.jetinstagram.ui.add.OpenCamera
 import com.vipulasri.jetinstagram.ui.add.OpenCameraWithPermission
 import com.vipulasri.jetinstagram.ui.components.bottomBarHeight
 import com.vipulasri.jetinstagram.ui.components.icon
+import com.vipulasri.jetinstagram.ui.favorite.Favorites
 import com.vipulasri.jetinstagram.ui.home.Home
 import com.vipulasri.jetinstagram.ui.profile.Profile
 import com.vipulasri.jetinstagram.ui.reels.Reels
@@ -61,7 +62,7 @@ fun MainScreen() {
             Home -> Home()
             Reels -> Reels()
             Add -> OpenCameraWithPermission()
-            Favorite -> Content(title = "Favorite")
+            Favorite -> Favorites()
             Profile -> com.vipulasri.jetinstagram.ui.profile.Profile()
         }
     }

@@ -48,6 +48,7 @@ import com.vipulasri.jetinstagram.data.PostsRepository
 import com.vipulasri.jetinstagram.data.StoriesRepository
 import com.vipulasri.jetinstagram.model.Post
 import com.vipulasri.jetinstagram.model.Story
+import com.vipulasri.jetinstagram.model.currentUser
 import com.vipulasri.jetinstagram.ui.components.icon
 import com.vipulasri.jetinstagram.ui.home.StoryImage
 
@@ -110,7 +111,7 @@ private fun ProfileInfo(){
     ) {
         // Profile picture
         Image(
-            painter = painterResource(id = R.drawable.ic_launcher_background),
+            painter = rememberImagePainter(currentUser.image),
             contentDescription = "Profile Picture",
             modifier = Modifier
                 .size(80.dp)
@@ -227,9 +228,15 @@ private fun PostGridSection(posts: List<Post>) {
 }
 
 @Composable
-fun PostItem(post: Post) {
+private fun PostItem(post: Post) {
     Image(
-        painter = rememberImagePainter(data = post.image), // Load image from URL
+        painter = rememberImagePainter(
+            data = post.image,
+            builder = {
+                placeholder(R.drawable.ic_launcher_background) // Set your placeholder drawable resource
+                error(R.drawable.ic_launcher_background) // Set an error image if loading fails (optional)
+            }
+            ), // Load image from URL
         contentDescription = "Post Image",
         modifier = Modifier
             .size(120.dp)
